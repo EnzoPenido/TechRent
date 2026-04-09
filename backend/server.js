@@ -12,6 +12,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 
 // ---- Importação das rotas ----
 const authRoutes         = require('./routes/authRoutes');
@@ -27,9 +28,8 @@ const app = express();
 // Permite que o Express leia o corpo das requisições em JSON
 app.use(express.json());
 
-// TODO (opcional): adicionar cors se o frontend rodar em outra porta
-// const cors = require('cors');
-// app.use(cors());
+// Permite requisições de outras origens, útil para frontend separado
+app.use(cors());
 
 // ---- Registro das rotas ----
 // Cada prefixo aponta para um arquivo de rotas separado

@@ -154,3 +154,36 @@ Ao implementar o Express + JWT, a recomendacao e:
   - registrar reparos em `historico_manutencao`
   - dashboards usando as views `view_painel_tecnico` e `view_resumo_admin`
 - Regras de autorizacao por `usuarios.nivel_acesso`
+
+## Backend implementado
+
+O backend já está implementado em `backend/` com os seguintes endpoints principais:
+
+- `POST /auth/registro` - cria usuario
+- `POST /auth/login` - autentica e retorna JWT
+- `GET /equipamentos` - lista equipamentos
+- `GET /equipamentos/:id` - busca equipamento
+- `POST /equipamentos` - cria equipamento (admin)
+- `PUT /equipamentos/:id` - atualiza equipamento (admin)
+- `DELETE /equipamentos/:id` - remove equipamento (admin)
+- `GET /chamados` - lista chamados (visao por perfil)
+- `GET /chamados/:id` - busca chamado
+- `POST /chamados` - cria chamado
+- `PUT /chamados/:id/status` - atualiza status do chamado
+- `GET /manutencao` - lista historico de manutencao (admin/tecnico)
+- `POST /manutencao` - registra manutencao (tecnico)
+- `GET /dashboard/admin` - resumo admin
+- `GET /dashboard/tecnico` - painel tecnico
+
+### Setup backend
+
+1. Copie `backend/.env.example` para `backend/.env`.
+2. Ajuste as variáveis de ambiente para conectar ao MySQL.
+3. Crie o banco de dados usando `bd/schema.sql` e `bd/views.sql`.
+4. No diretório `backend/`, execute:
+   - `npm install`
+   - `npm run dev`
+
+### Observacao
+
+O backend agora tem implementacao funcional para CRUD de equipamentos, gestao de chamados, historico de manutencao e dashboards baseados em views. O frontend ainda usa o template inicial do Next.js, então o consumo de API pode ser adicionado em seguida.
