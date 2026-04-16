@@ -45,6 +45,12 @@ app.get('/', (req, res) => {
   res.json({ mensagem: 'TechRent API está rodando!' });
 });
 
+// ---- Rota de teste ----
+// Para testar se a API está acessível
+app.get('/ping', (req, res) => {
+  res.json({ pong: true });
+});
+
 // ---- Inicialização do servidor ----
 const PORT = process.env.PORT || 3001;
 

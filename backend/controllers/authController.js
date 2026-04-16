@@ -43,8 +43,9 @@ const registro = async (req, res) => {
       },
     });
   } catch (erro) {
-    console.error('registro error:', erro);
-    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
+    console.error('registro error:', erro.message);
+    console.error('Error stack:', erro.stack);
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.', erro: erro.message });
   }
 };
 
@@ -52,12 +53,15 @@ const registro = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, senha } = req.body;
+    console.log('Login attempt with email:', email);
 
     if (!email || !senha) {
       return res.status(400).json({ mensagem: 'email e senha são obrigatórios.' });
     }
 
+    console.log('Attempting to query database for user:', email);
     const [usuarios] = await db.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+    console.log('Database query result:', usuarios.length > 0 ? 'User found' : 'User not found');
 
     if (usuarios.length === 0) {
       return res.status(401).json({ mensagem: 'Credenciais inválidas.' });
@@ -83,8 +87,9 @@ const login = async (req, res) => {
 
     return res.json({ token, usuario: payload });
   } catch (erro) {
-    console.error('login error:', erro);
-    return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
+    console.error('login error:', erro.message);
+    console.error('Error stack:', erro.stack);
+    return res.status(500).json({ mensagem: 'Erro interno do servidor.', erro: erro.message });
   }
 };
 
