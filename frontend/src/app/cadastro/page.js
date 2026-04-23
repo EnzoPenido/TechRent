@@ -24,11 +24,11 @@ export default function CadastroPage() {
   const authContext = useAuth();
   const router = useRouter();
 
-  if (!authContext) {
+  const { register, mounted } = authContext || {};
+
+  if (!mounted) {
     return <div className="flex items-center justify-center min-h-screen">Carregando...</div>;
   }
-
-  const { register } = authContext;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

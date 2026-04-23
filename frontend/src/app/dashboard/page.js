@@ -415,9 +415,11 @@ function TecnicoDashboard({ chamados, onRefresh }) {
 export default function DashboardPage() {
   const router = useRouter();
   const auth = useAuth();
-  const { user, token } = auth || {};
+  const { user, token, mounted } = auth || {};
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  if (!mounted) return null;
 
   const fetchDashboard = async () => {
     if (!user || !token) return;

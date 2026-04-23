@@ -22,11 +22,11 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [showSenha, setShowSenha] = useState(false);
 
-  if (!authContext) {
+  const { login, mounted } = authContext || {};
+
+  if (!mounted) {
     return <div className="flex items-center justify-center min-h-screen">Carregando...</div>;
   }
-
-  const { login } = authContext;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

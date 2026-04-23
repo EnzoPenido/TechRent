@@ -37,8 +37,8 @@ async function setupDatabase() {
     
     await connection.end();
     console.log('Database setup complete!');
-  } catch (error) {
-    console.error('Database setup failed:', error.message);
+    } catch (error) {
+    console.error('Database setup failed:', error);
   }
 }
 

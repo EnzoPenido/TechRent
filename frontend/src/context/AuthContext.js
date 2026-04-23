@@ -85,10 +85,8 @@ export const AuthProvider = ({ children }) => {
     delete axios.defaults.headers.common['Authorization'];
   };
 
-  if (!mounted) return <>{children}</>;
-
   return (
-    <AuthContext.Provider value={{ user, token, login, register, logout }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout, mounted }}>
       {children}
     </AuthContext.Provider>
   );

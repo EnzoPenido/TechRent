@@ -24,9 +24,11 @@ const API = "http://localhost:3001";
 
 export default function NovoChamadoPage() {
   const auth = useAuth();
-  const { user, token } = auth || {};
+  const { user, token, mounted } = auth || {};
   const router = useRouter();
   const [equipamentos, setEquipamentos] = useState([]);
+
+  if (!mounted) return null;
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");

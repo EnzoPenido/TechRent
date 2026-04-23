@@ -34,9 +34,11 @@ function formatDate(dateStr) {
 
 export default function ChamadosPage() {
   const auth = useAuth();
-  const { user, token } = auth || {};
+  const { user, token, mounted } = auth || {};
   const router = useRouter();
   const [chamados, setChamados] = useState([]);
+
+  if (!mounted) return null;
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("todos");

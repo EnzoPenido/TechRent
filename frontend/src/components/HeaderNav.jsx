@@ -10,8 +10,9 @@ import { LogOut, LayoutDashboard, Wrench, MonitorSmartphone, TicketPlus, History
 export function HeaderNav() {
   const auth = useAuth();
   const router = useRouter();
+  const { user, logout, mounted } = auth || {};
 
-  if (!auth) {
+  if (!mounted) {
     return (
       <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
@@ -20,8 +21,6 @@ export function HeaderNav() {
       </header>
     );
   }
-
-  const { user, logout } = auth;
 
   const handleLogout = () => {
     logout();

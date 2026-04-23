@@ -30,9 +30,11 @@ function formatDateTime(dateStr) {
 
 export default function ManutencaoPage() {
   const auth = useAuth();
-  const { user, token } = auth || {};
+  const { user, token, mounted } = auth || {};
   const router = useRouter();
   const [registros, setRegistros] = useState([]);
+
+  if (!mounted) return null;
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 

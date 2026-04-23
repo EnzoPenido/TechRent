@@ -57,8 +57,10 @@ function StatCard({ icon: Icon, label, value, colorClass }) {
 
 export default function EquipamentosPage() {
   const auth = useAuth();
-  const { user, token } = auth || {};
+  const { user, token, mounted } = auth || {};
   const [equipamentos, setEquipamentos] = useState([]);
+
+  if (!mounted) return null;
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
